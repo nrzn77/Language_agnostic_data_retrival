@@ -1,7 +1,7 @@
 # --- Interactive Test Script ---
 
 from Querying import module_b_pipeline
-from query_retrival import hybrid_retrieval_optimized
+from query_retrival import hybrid_search_final
 # Ensure UTF-8 output for Windows console
 import sys
 import io
@@ -28,15 +28,17 @@ def run_test_query(user_input):
     print(f"Detected Lang: {query_data['source_lang']} | Translated: {query_data['translated']}")
     
     # 2. Get the Hybrid RRF Results from Module C
-    results = hybrid_retrieval_optimized(query_data, docs, bm25, embeddings, semantic_model)
+    output = hybrid_search_final(user_input, docs, bm25, embeddings, semantic_model)
     
     # 3. Print Results in a readable format
     print(f"\n{'Rank':<5} | {'Score':<8} | {'Lang':<5} | {'Title'}")
     print("-" * 80)
-    for i, res in enumerate(results):
+    for i, res in enumerate(output['results']):
         print(f"{i+1:<5} | {res['score']:<8} | {res['language']:<5} | {res['title'][:55]}...")
 
 
 run_test_query("Climate change in Dhaka")
 run_test_query("বাংলাদেশের অর্থনীতি") 
-run_test_query("Criket")
+run_test_query("Sheikh Hasina")
+run_test_query("Football")
+run_test_query("ধর্ম অবমাননা")

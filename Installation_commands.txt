@@ -3,3 +3,4 @@ pip install rank_bm25 sentence-transformers numpy
 pip install langdetect deep-translator bnlp-toolkit spacy
 python -m spacy download en_core_web_sm
 
+pip install jellyfish
