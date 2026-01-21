@@ -21,7 +21,7 @@ def load_jsonl(file_path):
 
 # Load your 10,000+ articles
 print("Loading articles...")
-bangla_docs = load_jsonl('prothom_alo.jsonl')
+bangla_docs = load_jsonl('prothom_alo_2.jsonl')
 english_docs = load_jsonl('dhaka_tribune.jsonl')
 all_docs = bangla_docs + english_docs
 
