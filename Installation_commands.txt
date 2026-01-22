@@ -1,4 +1,4 @@
-pip install rank_bm25 sentence-transformers numpy
+pip install rank_bm25 sentence-transformers numpy hf_xet
 
 pip install langdetect deep-translator bnlp-toolkit spacy
 python -m spacy download en_core_web_sm

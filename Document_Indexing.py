@@ -21,7 +21,7 @@ def load_jsonl(file_path):
 
 # Load your 10,000+ articles
 print("Loading articles...")
-bangla_docs = load_jsonl('prothom_alo.jsonl')
+bangla_docs = load_jsonl('prothom_alo_2.jsonl')
 english_docs = load_jsonl('dhaka_tribune.jsonl')
 all_docs = bangla_docs + english_docs
 
@@ -35,19 +35,19 @@ tokenized_corpus = [tokenize(doc['body']) for doc in all_docs]
 bm25_model = BM25Okapi(tokenized_corpus)
 
 # 3. Fast Semantic Indexing
-# Check for GPU (cuda) to speed up from minutes to seconds
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-print(f"Generating semantic embeddings using {device}...")
-
 semantic_model = SentenceTransformer('sentence-transformers/LaBSE', device=device)
 
-# Speed up with larger batch_size and float16 precision
+# Use fp16 for a massive speed boost on RTX 40-series
+print(f"Generating semantic embeddings on {torch.cuda.get_device_name(0)}...")
 doc_bodies = [doc['body'] for doc in all_docs]
+
 doc_embeddings = semantic_model.encode(
     doc_bodies, 
-    batch_size=64,           # Increased for speed
+    batch_size=128, 
     show_progress_bar=True, 
-    convert_to_numpy=True
+    convert_to_numpy=True,
+    precision="fp16" 
 )
 
 # 4. Save Everything to the Same Folder

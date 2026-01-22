@@ -1,0 +1,9 @@
+rank_bm25
+sentence-transformers
+numpy
+langdetect
+deep-translator
+bnlp-toolkit
+spacy
+jellyfish
+hf_xet

@@ -22,10 +22,8 @@ Place your news data in JSONL format:
 Run the following commands (see `Installation_commands.txt` for details):
 
 ```sh
-pip install rank_bm25 sentence-transformers numpy
-pip install langdetect deep-translator bnlp-toolkit spacy
+pip install -r requirements.txt
 python -m spacy download en_core_web_sm
-pip install jellyfish
 ```
 
 ### 3. Build the Index
