@@ -55,3 +55,4 @@ This project is for academic and research purposes.
 
 ## Appendix
 The code to scrape articles is inside [ARTICLE_SCRAPER](ARTICLE_SCRAPER).
+The URLs were collected from sitemaps. The code for this is inside [SITEMAP_EXTRACTOR](SITEMAP_EXTRACTOR)
