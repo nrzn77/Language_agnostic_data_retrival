@@ -52,3 +52,6 @@ This will print ranked search results for sample queries in English, Bangla, and
 
 ## License
 This project is for academic and research purposes.
+
+## Appendix
+The code to scrape articles is inside [ARTICLE_SCRAPER](ARTICLE_SCRAPER).

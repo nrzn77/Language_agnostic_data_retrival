@@ -1,0 +1,10 @@
+# Data Scraping
+
+Here are the codes to scrape articles from Prothom Alo and Dhaka Tribune.
+
+```sh
+pip install -r requirements.txt
+```
+
+```urls``` contain .txt files containing URLs of the articles that will be scraped.
+Run ```prothom_alo.py``` and ```dhaka_tribune.py``` to scrape those URLs.
