@@ -19,8 +19,9 @@ def load_jsonl(file_path):
             data.append(json.loads(line))
     return data
 
-# Load your 10,000+ articles
+# Load your articles
 print("Loading articles...")
+# Ensure these files exist in the same directory
 bangla_docs = load_jsonl('prothom_alo.jsonl')
 english_docs = load_jsonl('dhaka_tribune.jsonl')
 all_docs = bangla_docs + english_docs
@@ -38,16 +39,23 @@ bm25_model = BM25Okapi(tokenized_corpus)
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 semantic_model = SentenceTransformer('sentence-transformers/LaBSE', device=device)
 
-# Use fp16 for a massive speed boost on RTX 40-series
-print(f"Generating semantic embeddings on {torch.cuda.get_device_name(0)}...")
+# --- FIX START: Safe device name printing ---
+if torch.cuda.is_available():
+    device_name = torch.cuda.get_device_name(0)
+else:
+    device_name = "CPU"
+
+print(f"Generating semantic embeddings on {device_name}...")
+# --- FIX END ---
+
 doc_bodies = [doc['body'] for doc in all_docs]
 
+# --- FIX: Removed precision="fp16" for CPU compatibility ---
 doc_embeddings = semantic_model.encode(
     doc_bodies, 
     batch_size=128, 
     show_progress_bar=True, 
-    convert_to_numpy=True,
-    precision="fp16" 
+    convert_to_numpy=True
 )
 
 # 4. Save Everything to the Same Folder
@@ -61,7 +69,7 @@ with open(os.path.join(INDEX_FOLDER, 'metadata.pkl'), 'wb') as f:
 with open(os.path.join(INDEX_FOLDER, 'bm25_model.pkl'), 'wb') as f:
     pickle.dump(bm25_model, f)
 
-# Save Semantic Embeddings (Binary format is fastest for large arrays)
+# Save Semantic Embeddings
 np.save(os.path.join(INDEX_FOLDER, 'embeddings.npy'), doc_embeddings)
 
-print(f"Indexing complete! Saved 10,000+ articles to '{INDEX_FOLDER}/'")
+print(f"Indexing complete! Saved {len(all_docs)} articles to '{INDEX_FOLDER}/'")

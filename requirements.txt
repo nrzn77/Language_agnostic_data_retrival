@@ -3,7 +3,8 @@ sentence-transformers
 numpy
 langdetect
 deep-translator
-bnlp-toolkit
 spacy
 jellyfish
 hf_xet
+sentencepiece==0.2.1
+bnlp-toolkit
