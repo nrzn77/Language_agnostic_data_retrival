@@ -93,7 +93,7 @@ Here is the performance of our CLIR system against the target metrics:
 
 <img src="Evaluation_Graph.png" alt="Evaluation Metrics Graph" width="700">
 
-<img src="Recall_Curve.png" alt="Recall Curve" width="700">
+<img src="Recall_Curve.jpeg" alt="Recall Curve" width="700">
 
 ## Notes
 
