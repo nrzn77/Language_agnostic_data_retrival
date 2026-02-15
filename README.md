@@ -88,6 +88,13 @@ After running the evaluation and visualization scripts, the following files demo
 | `Recall_Curve.png` | Line graph showing recall performance across different retrieval depths (k = 1 to 50) |
 | `labeled_queries.csv` | Ground-truth dataset used for evaluation |
 
+### 📊 Visualizations
+Here is the performance of our CLIR system against the target metrics:
+
+<img src="Evaluation_Graph.png" alt="Evaluation Metrics Graph" width="700">
+
+<img src="Recall_Curve.png" alt="Recall Curve" width="700">
+
 ## Notes
 
 - Ensure JSONL files are properly formatted and contain both English and Bangla articles for optimal performance.
