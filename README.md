@@ -77,16 +77,7 @@ This project includes a comprehensive evaluation module to measure the performan
 - MRR: Greater than 0.60 (exceeds target of 0.4)
 - Top-10 Success Rate: 81.6% of test queries retrieve the correct relevant document within the top 10 results
 
-### Evidence Files
 
-After running the evaluation and visualization scripts, the following files demonstrate system performance:
-
-| File Name | Description |
-|-----------|-------------|
-| `Evaluation_Graph.png` | Bar chart comparing achieved scores against assignment targets |
-| `Model_Comparison.png` | Comparison showing Hybrid (Lexical + Semantic) outperforming BM25-only and embedding-only models |
-| `Recall_Curve.png` | Line graph showing recall performance across different retrieval depths (k = 1 to 50) |
-| `labeled_queries.csv` | Ground-truth dataset used for evaluation |
 
 ### 📊 Visualizations
 Here is the performance of our CLIR system against the target metrics:
