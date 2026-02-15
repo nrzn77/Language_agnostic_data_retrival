@@ -1,57 +1,99 @@
 # Multilingual News Search Engine
 
-This project is a multilingual (English & Bangla) news search engine that supports cross-lingual and code-switched queries. It uses BM25, semantic embeddings, and fuzzy matching for robust retrieval.
+This project implements a multilingual (English and Bangla) news search engine that supports cross-lingual and code-switched queries. The system combines lexical retrieval (BM25), semantic embeddings, and fuzzy matching to provide robust and accurate information retrieval across languages.
 
 ## Project Structure
+
 - `prothom_alo.jsonl` — Bangla news articles (JSONL format)
 - `dhaka_tribune.jsonl` — English news articles (JSONL format)
 - `Document_Indexing.py` — Builds the search index (BM25, embeddings, metadata)
 - `Querying.py` — Handles query normalization, language detection, translation, and entity extraction
 - `hybrid_retrival_test.py` — Interactive script to test the hybrid retrieval pipeline
-- `search_index/` — Folder where all indices and models are saved
+- `Evaluation.py` — Computes evaluation metrics (Precision, Recall, MRR, nDCG)
+- `search_index/` — Directory where all indices and models are saved
+- `labeled_queries.csv` — Ground-truth dataset containing query–URL relevance pairs
 - `Installation_commands.txt` — All required installation commands
+- `ARTICLE_SCRAPER/` — Scripts used to scrape news articles
 
 ## Getting Started
 
 ### 1. Prepare Data
-Place your news data in JSONL format:
-- Each line should be a JSON object with at least `title`, `body`, `url`, and `language` fields.
-- Example files: `prothom_alo.jsonl` (Bangla), `dhaka_tribune.jsonl` (English)
+
+Place your news data in JSONL format. Each line must be a JSON object with at least the following fields:
+
+- `title`
+- `body`
+- `url`
+- `language`
+
+Example files:
+- `prothom_alo.jsonl` (Bangla)
+- `dhaka_tribune.jsonl` (English)
 
 ### 2. Install Dependencies
+
 Run the following commands (see `Installation_commands.txt` for details):
 
-```sh
+```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
 ### 3. Build the Index
+
 Run the indexing script to process your articles and build the search index:
 
-```sh
+```bash
 python Document_Indexing.py
 ```
-This will create the `search_index/` folder with all necessary files.
 
-### 4. Querying
-You can use `Querying.py` to test query normalization, language detection, translation, and entity extraction. Example usage is provided in the script.
+This will create the `search_index/` directory containing all necessary index files and models.
 
-### 5. Hybrid Retrieval Test
+## Usage
+
+### Interactive Search
+
 Run the interactive test script to search for news articles using the hybrid retrieval pipeline:
 
-```sh
+```bash
 python hybrid_retrival_test.py
 ```
-This will print ranked search results for sample queries in English, Bangla, and code-switched forms.
+
+### Run Evaluation
+
+To generate evaluation metrics (Precision@10, Recall@50, MRR, nDCG) and view the results:
+
+```bash
+python Evaluation.py
+```
+
+## Results and Evaluation
+
+This project includes a comprehensive evaluation module to measure the performance of the Cross-Lingual Information Retrieval (CLIR) system.
+
+### Key Findings
+
+- Recall@50: Greater than 0.89 (exceeds target of 0.5)
+- MRR: Greater than 0.60 (exceeds target of 0.4)
+- Top-10 Success Rate: 81.6% of test queries retrieve the correct relevant document within the top 10 results
+
+### Evidence Files
+
+After running the evaluation and visualization scripts, the following files demonstrate system performance:
+
+| File Name | Description |
+|-----------|-------------|
+| `Evaluation_Graph.png` | Bar chart comparing achieved scores against assignment targets |
+| `Model_Comparison.png` | Comparison showing Hybrid (Lexical + Semantic) outperforming BM25-only and embedding-only models |
+| `Recall_Curve.png` | Line graph showing recall performance across different retrieval depths (k = 1 to 50) |
+| `labeled_queries.csv` | Ground-truth dataset used for evaluation |
 
 ## Notes
-- Make sure your JSONL files are properly formatted and contain both English and Bangla articles for best results.
-- The retrieval system ensures a balanced candidate pool from both languages.
-- All installation commands are in `Installation_commands.txt` for convenience.
+
+- Ensure JSONL files are properly formatted and contain both English and Bangla articles for optimal performance.
+- The retrieval system maintains a balanced candidate pool across languages.
+- All installation commands are listed in `Installation_commands.txt`.
 
 ## License
-This project is for academic and research purposes.
 
-## Appendix
-The code to scrape articles is inside [ARTICLE_SCRAPER](ARTICLE_SCRAPER).
+This project is intended for academic and research purposes.
