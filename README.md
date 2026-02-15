@@ -91,9 +91,11 @@ After running the evaluation and visualization scripts, the following files demo
 ### 📊 Visualizations
 Here is the performance of our CLIR system against the target metrics:
 
+<img src="Model_Comparison.jpeg" alt="Model Comparison" width="700">
+
 <img src="Evaluation_Graph.png" alt="Evaluation Metrics Graph" width="700">
 
-<img src="Recall_Curve.jpeg" alt="Recall Curve" width="700">
+
 
 ## Notes
 
